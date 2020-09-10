@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - Infrastructure", "{C874CE66-0030-4F51-B6EF-BEA535DBB878}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manager.Domain", "Manager.Domain\Manager.Domain.csproj", "{B8E37A28-621B-4D8E-8320-085F176051DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Manager.Domain", "Manager.Domain\Manager.Domain.csproj", "{B8E37A28-621B-4D8E-8320-085F176051DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manager.Infra", "Manager.Infra\Manager.Infra.csproj", "{D44D2FEF-5E63-4BFB-9A5F-6EE11F388C27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +25,17 @@ Global
 		{B8E37A28-621B-4D8E-8320-085F176051DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8E37A28-621B-4D8E-8320-085F176051DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8E37A28-621B-4D8E-8320-085F176051DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D44D2FEF-5E63-4BFB-9A5F-6EE11F388C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D44D2FEF-5E63-4BFB-9A5F-6EE11F388C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D44D2FEF-5E63-4BFB-9A5F-6EE11F388C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D44D2FEF-5E63-4BFB-9A5F-6EE11F388C27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B8E37A28-621B-4D8E-8320-085F176051DF} = {90456180-2E46-4E9A-8FDE-15B4556F5BD5}
+		{D44D2FEF-5E63-4BFB-9A5F-6EE11F388C27} = {C874CE66-0030-4F51-B6EF-BEA535DBB878}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0406C33F-86E7-4B30-BF6D-5A2AD1DEE156}
