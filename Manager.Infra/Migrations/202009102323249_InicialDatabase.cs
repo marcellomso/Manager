@@ -16,6 +16,7 @@
                         Creation = c.DateTime(nullable: false),
                         Status = c.Int(nullable: false),
                         Amount = c.Double(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
                         Vehicle_Id = c.Int(),
                         Vendor_Id = c.Int(),
                     })
@@ -36,6 +37,7 @@
                         Fuel = c.Int(nullable: false),
                         Amount = c.Double(nullable: false),
                         Status = c.String(),
+                        Deleted = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -47,6 +49,7 @@
                         Name = c.String(),
                         RoleId = c.Guid(nullable: false),
                         CustomCommission = c.Double(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
                         Role_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -60,6 +63,7 @@
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Commission = c.Double(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

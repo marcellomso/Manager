@@ -1,5 +1,6 @@
 ﻿using Manager.Domain.Entities;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Manager.Infra.Persistence.DataContext
@@ -27,6 +28,15 @@ namespace Manager.Infra.Persistence.DataContext
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+        }
+
+        public static void Update(string connectionString)
+        {
+            var configuration = new Migrations.Configuration
+            {
+                TargetDatabase = new DbConnectionInfo(connectionString, "System.Data.SqlClient")
+            };
+            new System.Data.Entity.Migrations.DbMigrator(configuration).Update();
         }
     }
 }

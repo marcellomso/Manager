@@ -51,9 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202009102055583_InicialDatabase.cs" />
-    <Compile Include="Migrations\202009102055583_InicialDatabase.designer.cs">
-      <DependentUpon>202009102055583_InicialDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202009102323249_InicialDatabase.cs" />
+    <Compile Include="Migrations\202009102323249_InicialDatabase.designer.cs">
+      <DependentUpon>202009102323249_InicialDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Seed\RoleSeed.cs" />
@@ -61,24 +61,23 @@
     <Compile Include="Persistence\IUnitOfWork.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\VehicleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <EmbeddedResource Include="Migrations\202009102323249_InicialDatabase.resx">
+      <DependentUpon>202009102323249_InicialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Manager.Domain\Manager.Domain.csproj">
       <Project>{58ffca4b-8b83-4f3c-a63b-c22707b5a3db}</Project>
       <Name>Manager.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202009102055583_InicialDatabase.resx">
-      <DependentUpon>202009102055583_InicialDatabase.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
