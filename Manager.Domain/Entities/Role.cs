@@ -1,6 +1,6 @@
 ﻿namespace Manager.Domain.Entities
 {
-    public class Role: Base
+    public class Role: BaseEntity
     {
         public string Name { get; private set; }
         public double Commission { get; private set; }

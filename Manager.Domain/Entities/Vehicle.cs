@@ -2,7 +2,7 @@
 
 namespace Manager.Domain.Entities
 {
-    public class Vehicle: Base
+    public class Vehicle: BaseEntity
     {
         public string Name { get; private set; }
         public string Year { get; private set; }

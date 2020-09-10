@@ -2,7 +2,7 @@
 
 namespace Manager.Domain.Entities
 {
-    public class Vendor: Base
+    public class Vendor: BaseEntity
     {
         public string Name { get; private set; }
         public Guid RoleId { get; private set; }

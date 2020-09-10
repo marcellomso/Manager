@@ -3,7 +3,7 @@ using System;
 
 namespace Manager.Domain.Entities
 {
-    public class Opportunity
+    public class Opportunity: BaseEntity
     {
         public Guid VeicheId { get; private set; }
         public Vehicle Vehicle { get; private set; }
