@@ -1,5 +1,7 @@
 ﻿using Manager.CrossCutting;
 using Manager.Infra.Persistence.DataContext;
+using Manager.SharedKernel;
+using Manager.SharedKernel.Events;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +24,7 @@ namespace Manager.API
             ManagerDataContext.Update(Configuration.GetConnectionString("BitzenConnectionString"));
 
             services.AddScoped(_ => new ManagerDataContext(Configuration.GetConnectionString("BitzenConnectionString")));
+            services.AddScoped<IHandler<DomainNotification>, DomainNotificationHandler>();
             services.AddServices();
 
             services.AddCors();

@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dependencies.cs" />
+    <Compile Include="DomainNotificationHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +76,10 @@
     <ProjectReference Include="..\Manager.Service\Manager.Service.csproj">
       <Project>{d28e3442-1128-41f4-90ad-276beb0b7dcf}</Project>
       <Name>Manager.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Manager.SharedKernel\Manager.SharedKernel.csproj">
+      <Project>{675b8673-9384-4fbf-9a9b-092d6d89e865}</Project>
+      <Name>Manager.SharedKernel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

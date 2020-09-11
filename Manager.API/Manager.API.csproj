@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Manager.CrossCutting\Manager.CrossCutting.csproj" />
     <ProjectReference Include="..\Manager.Domain\Manager.Domain.csproj" />
+    <ProjectReference Include="..\Manager.SharedKernel\Manager.SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>
