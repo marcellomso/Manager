@@ -7,7 +7,7 @@
         public string Year { get; set; }
         public string Model { get; set; }
         public string Fuel { get; set; }
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
         public bool Sold { get; set; }
     }
 }

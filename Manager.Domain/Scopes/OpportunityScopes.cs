@@ -1,9 +1,5 @@
 ﻿using Manager.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Manager.SharedKernel.Validations;
 
 namespace Manager.Domain.Scopes
 {
@@ -11,7 +7,13 @@ namespace Manager.Domain.Scopes
     {
         public static bool NewScopesValid(this Opportunity opportunity)
         {
-            return false;
+            return AssertionConcern.IsSatisfiedBy
+            (
+                AssertionConcern.AssertNotNull(opportunity.Vehicle, "Veículo inválido."),
+                AssertionConcern.AssertNotNull(opportunity.Vendor, "Vendedor inválido."),
+                AssertionConcern.AssertTrue(!opportunity.Vehicle.Deleted, "O veículo não encontrado, selecione outro"),
+                AssertionConcern.AssertTrue(!opportunity.Vehicle.Sold, "O veículo já foi vendido, selecione outro")
+            ); ;
         }
     }
 }

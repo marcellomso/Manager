@@ -6,6 +6,6 @@ namespace Manager.Domain.Commands.OpportunityCommands
     {
         public int Veiche { get; set; }
         public int Vendor { get; set; }
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
     }
 }

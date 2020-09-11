@@ -15,8 +15,6 @@ namespace Manager.API.Controllers
 
         [HttpGet]
         public IActionResult Get()
-        {
-            return Ok(_service.Get());
-        }
+            => ReturnResponse(_service.Get(), null);
     }
 }

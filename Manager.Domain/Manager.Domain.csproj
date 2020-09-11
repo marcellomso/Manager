@@ -71,7 +71,14 @@
     <Compile Include="Enuns\EStatusOpportunity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scopes\OpportunityScopes.cs" />
+    <Compile Include="Scopes\VehicleScopes.cs" />
+    <Compile Include="Scopes\VendorScopes.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Manager.SharedKernel\Manager.SharedKernel.csproj">
+      <Project>{675B8673-9384-4FBF-9A9B-092D6D89E865}</Project>
+      <Name>Manager.SharedKernel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

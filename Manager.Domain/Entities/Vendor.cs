@@ -1,4 +1,6 @@
-﻿namespace Manager.Domain.Entities
+﻿using Manager.Domain.Scopes;
+
+namespace Manager.Domain.Entities
 {
     public class Vendor: BaseEntity
     {
@@ -24,6 +26,8 @@
             Name = name;
             Role = role;
             CustomCommission = customCommsion;
+
+            this.ScopesValid();
         }
     }
 }

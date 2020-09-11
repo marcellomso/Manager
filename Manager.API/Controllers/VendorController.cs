@@ -17,16 +17,12 @@ namespace Manager.API.Controllers
 
         [HttpGet]
         public IActionResult Get()
-        {
-            return Ok(_service.Get());
-        }
+            => ReturnResponse(_service.Get(), null);
 
         [HttpGet]
         [Route("{id:int}")]
         public IActionResult Get(int id)
-        {
-            return Ok(_service.Get(id));
-        }
+            => ReturnResponse(_service.Get(id), null);
 
         [HttpPost]
         public IActionResult Save(VendorCommand command)
@@ -34,11 +30,11 @@ namespace Manager.API.Controllers
             try
             {
                 var vendor = _service.New(command);
-                return WriteResponse(vendor);
+                return ReturnResponse(vendor, null);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return ReturnResponse(null, ex);
             }
         }
 
@@ -48,11 +44,11 @@ namespace Manager.API.Controllers
             try
             {
                 var vendor = _service.Update(command);
-                return WriteResponse(vendor);
+                return ReturnResponse(vendor, null);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return ReturnResponse(null, ex);
             }
         }
 
@@ -62,11 +58,11 @@ namespace Manager.API.Controllers
         {
             try
             {
-                return WriteResponse(_service.Delete(id));
+                return ReturnResponse(_service.Delete(id), null);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return ReturnResponse(null, ex);
             }
         }
     }

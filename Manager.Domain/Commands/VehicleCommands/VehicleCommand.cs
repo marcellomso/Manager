@@ -6,6 +6,6 @@
         public string Year { get; set; }
         public string Model { get; set; }
         public int Fuel { get; set; }
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
     }
 }

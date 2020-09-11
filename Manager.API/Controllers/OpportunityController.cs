@@ -16,16 +16,12 @@ namespace Manager.API.Controllers
         }
         [HttpGet]
         public IActionResult Get()
-        {
-            return Ok(_service.Get());
-        }
+            => ReturnResponse(_service.Get(), null);
 
         [HttpGet]
         [Route("{id:int}")]
         public IActionResult Get(int id)
-        {
-            return Ok(_service.Get(id));
-        }
+            => ReturnResponse(_service.Get(id), null);
 
         [HttpPost]
         public IActionResult Save(OpportunityCommand command)
@@ -33,11 +29,11 @@ namespace Manager.API.Controllers
             try
             {
                 var opportunity = _service.New(command);
-                return WriteResponse(opportunity);
+                return ReturnResponse(opportunity, null);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return ReturnResponse(null, ex);
             }
         }
 

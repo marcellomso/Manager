@@ -37,6 +37,8 @@ namespace Manager.API
                     o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 })
                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            DomainEvent.Container = services.BuildServiceProvider();
         }
 
         public static void Configure(IApplicationBuilder app, IHostingEnvironment env)

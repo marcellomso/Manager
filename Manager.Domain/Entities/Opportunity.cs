@@ -1,4 +1,5 @@
 ﻿using Manager.Domain.Enuns;
+using Manager.Domain.Scopes;
 using System;
 
 namespace Manager.Domain.Entities
@@ -12,11 +13,11 @@ namespace Manager.Domain.Entities
         public DateTime Creation { get; private set; }
         public DateTime Expiration { get => Creation.AddDays(7); }
         public EStatusOpportunity Status { get; private set; }
-        public double Amount { get; private set; }
+        public decimal Amount { get; private set; }
 
         protected Opportunity() {}
 
-        public Opportunity(Vehicle vehicle, Vendor vendor, double amount)
+        public Opportunity(Vehicle vehicle, Vendor vendor, decimal amount)
         {
             Vehicle = vehicle;
             Vendor = vendor;
@@ -24,6 +25,13 @@ namespace Manager.Domain.Entities
 
             Creation = DateTime.Now;
             Status = EStatusOpportunity.Criada;
+
+            Validate();
         }
+        private void Validate()
+        {
+            this.NewScopesValid();
+        }
+
     }
 }
