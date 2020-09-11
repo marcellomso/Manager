@@ -25,8 +25,10 @@ namespace Manager.Service
         {
             var vehicle = Get(id);
 
-            if (vehicle != null)
-                _repository.Delete(vehicle);
+            if (!ValidateObject(vehicle, "Veículo não encontrado."))
+                return false;
+
+            _repository.Delete(vehicle);
 
             if (Commit())
                 return true;
@@ -37,7 +39,7 @@ namespace Manager.Service
         public List<VehicleListCommand> Get()
         {
             return _repository.Get()
-                .Where(x=> !x.Deleted)
+                .Where(x => !x.Deleted)
                 .Select(x => new VehicleListCommand
                 {
                     Id = x.Id,
@@ -45,7 +47,7 @@ namespace Manager.Service
                     Model = x.Model,
                     Year = x.Year,
                     Amount = x.Amount,
-                    Sold = x.Sold,
+                    Sold = x.IsSold,
                     Fuel = x.Fuel.Name
                 })
                 .ToList();
@@ -59,7 +61,8 @@ namespace Manager.Service
 
         public Vehicle New(VehicleCommand command)
         {
-            ValidateObject(command, "Objeto veículo desconhecido.");
+            if (!ValidateObject(command, "Objeto veículo desconhecido."))
+                return null;
 
             var vehicle = new Vehicle(
                 command.Name,
@@ -78,16 +81,20 @@ namespace Manager.Service
 
         public Vehicle Update(VehicleUpdateCommand command)
         {
-            ValidateObject(command, "Objeto veículo desconhecido.");
+            if (!ValidateObject(command, "Objeto veículo desconhecido."))
+                return null;
+
             var vehicle = Get(command.Id);
 
-            if (vehicle != null)
-                vehicle.Update(
-                    command.Name,
-                    command.Year,
-                    command.Model,
-                    GetFuel(command.Fuel),
-                    command.Amount);
+            if (!ValidateObject(vehicle, "Veículo não encontrado."))
+                return null;
+
+            vehicle.Update(
+                command.Name,
+                command.Year,
+                command.Model,
+                GetFuel(command.Fuel),
+                command.Amount);
 
             _repository.Update(vehicle);
 

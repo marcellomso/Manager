@@ -26,8 +26,10 @@ namespace Manager.Service
         {
             var vendor = Get(id);
 
-            if (vendor != null)
-                _repository.Delete(vendor);
+            if (!ValidateObject(vendor, "Vendedor não encontrado."))
+                return false;
+
+            _repository.Delete(vendor);
 
             if (Commit())
                 return true;
@@ -57,7 +59,8 @@ namespace Manager.Service
 
         public Vendor New(VendorCommand command)
         {
-            ValidateObject(command, "Objeto vendedor desconhecido.");
+            if (!ValidateObject(command, "Objeto vendedor desconhecido."))
+                return null;
 
             var vendor = new Vendor(
                 command.Name,
@@ -74,14 +77,18 @@ namespace Manager.Service
 
         public Vendor Update(VendorUpdateCommand command)
         {
-            ValidateObject(command, "Objeto vendedor desconhecido.");
+            if (!ValidateObject(command, "Objeto vendedor desconhecido."))
+                return null;
+
             var vendor = Get(command.Id);
 
-            if (vendor != null)
-                vendor.Update(
-                    command.Name,
-                    GetRole(command.Role),
-                    command.CustomCommission);
+            if (!ValidateObject(vendor, "Vendedor não encontrado."))
+                return null;
+
+            vendor.Update(
+                command.Name,
+                GetRole(command.Role),
+                command.CustomCommission);
 
             _repository.Update(vendor);
 

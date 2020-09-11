@@ -34,7 +34,7 @@ namespace Manager.API.Controllers
             }
             catch (Exception ex)
             {
-                return ReturnResponse(null, ex);
+                return ReturnResponse(ex);
             }
         }
 
@@ -48,7 +48,7 @@ namespace Manager.API.Controllers
             }
             catch (Exception ex)
             {
-                return ReturnResponse(null, ex);
+                return ReturnResponse(ex);
             }
         }
 
@@ -62,7 +62,7 @@ namespace Manager.API.Controllers
             }
             catch (Exception ex)
             {
-                return ReturnResponse(null, ex);
+                return ReturnResponse(ex);
             }
         }
     }

@@ -29,6 +29,16 @@ namespace Manager.API.Controllers
             return Ok(new { success = true, data = success });
         }
 
+        protected IActionResult ReturnResponse(Exception ex)
+        {
+                return BadRequest(new
+                {
+                    success = false,
+                    data = ex,
+                    errors = ex.Message
+                });
+        }
+
         public void Dispose()
         {
             _notifications.Dispose();

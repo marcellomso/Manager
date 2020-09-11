@@ -1,6 +1,7 @@
 ﻿using Manager.Domain.Contracts.Repositories;
 using Manager.Domain.Entities;
 using Manager.Infra.Persistence.DataContext;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -26,6 +27,13 @@ namespace Manager.Infra.Repositories
 
         public Vehicle Get(int id)
             => _context.Vehicles.FirstOrDefault(x => x.Id == id);
+
+        public List<Vehicle> GetByOpportunity(int opportunityId)
+        {
+            return _context.Vehicles
+                .Where(x => x.Oportunidades.Any(y => y.Id == opportunityId))
+                .ToList();
+        }
 
         public void New(Vehicle vehicle)
             => _context.Vehicles.Add(vehicle);

@@ -1,6 +1,8 @@
 ﻿using Manager.Domain.Contracts.Repositories;
 using Manager.Domain.Entities;
+using Manager.Domain.Enuns;
 using Manager.Infra.Persistence.DataContext;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -25,7 +27,20 @@ namespace Manager.Infra.Repositories
             => _context.Set<Opportunity>().Where(x => !x.Deleted).AsNoTracking();
 
         public Opportunity Get(int id)
-            => _context.Opportunities.FirstOrDefault(x => x.Id == id);
+            => _context.Opportunities
+            .Include(x => x.Vehicle)
+            .FirstOrDefault(x => x.Id == id);
+
+        public List<Opportunity> GetByVehicle(int id, int vehicleId)
+            => _context.Opportunities
+                    .Where(x => x.Id != id && 
+                           x.VehicleId == vehicleId &&
+                           x.StatusId == (int)EOpportunityStatus.Created)
+                    .ToList();
+
+        public bool IsDuplicate(int vehicleId, int vendorId)
+            => _context.Opportunities
+                .Any(x => x.VehicleId == vehicleId && x.VendorId == vendorId);
 
         public void New(Opportunity opportunity)
             => _context.Opportunities.Add(opportunity);

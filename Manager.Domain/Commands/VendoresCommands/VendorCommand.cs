@@ -4,6 +4,6 @@
     {
         public string Name { get; set; }
         public int Role { get; set; }
-        public double CustomCommission { get; set; }
+        public decimal CustomCommission { get; set; }
     }
 }

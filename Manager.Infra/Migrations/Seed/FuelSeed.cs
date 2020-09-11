@@ -13,6 +13,7 @@ namespace Manager.Infra.Migrations.Seed
                 context.Fuels.Add(new Fuel("Gasolina"));
                 context.Fuels.Add(new Fuel("Disel"));
                 context.Fuels.Add(new Fuel("Etanol"));
+                context.Fuels.Add(new Fuel("Elétrico"));
             }
         }
     }

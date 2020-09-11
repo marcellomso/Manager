@@ -16,6 +16,7 @@
         {
             RoleSeed.Seed(context);
             FuelSeed.Seed(context);
+            OpportunityStatusSeed.Seed(context);
         }
     }
 }

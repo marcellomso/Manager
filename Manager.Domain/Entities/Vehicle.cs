@@ -1,4 +1,5 @@
 ﻿using Manager.Domain.Scopes;
+using System.Collections.Generic;
 
 namespace Manager.Domain.Entities
 {
@@ -10,7 +11,9 @@ namespace Manager.Domain.Entities
         public int FuelId { get; private set; }
         public Fuel Fuel { get; private set; }
         public decimal Amount { get; private set; }
-        public bool Sold { get; private set; }
+        public bool IsSold { get; private set; }
+
+        public virtual ICollection<Opportunity>  Oportunidades { get; set; }
 
         protected Vehicle() {}
 
@@ -35,9 +38,9 @@ namespace Manager.Domain.Entities
             this.ScopesValid();
         }
 
-        public void SoldVehicle()
+        public void Sold()
         {
-            Sold = true;
+            IsSold = true;
         }
     }
 }

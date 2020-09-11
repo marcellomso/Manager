@@ -4,7 +4,7 @@ namespace Manager.Domain.Commands.OpportunityCommands
 {
     public class OpportunityCommand
     {
-        public int Veiche { get; set; }
+        public int Vehicle { get; set; }
         public int Vendor { get; set; }
         public decimal Amount { get; set; }
     }

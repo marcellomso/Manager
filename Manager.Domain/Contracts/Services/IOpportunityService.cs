@@ -11,5 +11,7 @@ namespace Manager.Domain.Contracts.Services
         Opportunity New(OpportunityCommand command);
         Opportunity Update(OpportunityUpdateCommand command);
         bool Delete(int id);
+        bool Accept(int id);
+        bool Cancel(int id);
     }
 }

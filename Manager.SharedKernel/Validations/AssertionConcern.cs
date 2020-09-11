@@ -117,6 +117,12 @@ namespace Manager.SharedKernel.Validations
                 new DomainNotification("AssertIsRange", message) : null;
         }
 
+        public static DomainNotification AssertIsRange(decimal value, decimal minimum, decimal maximum, string message)
+        {
+            return (value < minimum || value > maximum) ?
+                new DomainNotification("AssertIsRange", message) : null;
+        }
+
         public static DomainNotification AssertIsRange(float value, float minimum, float maximum, string message)
         {
             return (value < minimum || value > maximum) ?

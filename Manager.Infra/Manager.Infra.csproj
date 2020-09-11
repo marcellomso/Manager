@@ -51,12 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202009111112251_InicialDatabase.cs" />
-    <Compile Include="Migrations\202009111112251_InicialDatabase.designer.cs">
-      <DependentUpon>202009111112251_InicialDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202009111937293_StartDataBase.cs" />
+    <Compile Include="Migrations\202009111937293_StartDataBase.designer.cs">
+      <DependentUpon>202009111937293_StartDataBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Seed\FuelSeed.cs" />
+    <Compile Include="Migrations\Seed\OpportunityStatusSeed.cs" />
     <Compile Include="Migrations\Seed\RoleSeed.cs" />
     <Compile Include="Persistence\DataContext\ManagerDataContext.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
@@ -78,8 +79,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202009111112251_InicialDatabase.resx">
-      <DependentUpon>202009111112251_InicialDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202009111937293_StartDataBase.resx">
+      <DependentUpon>202009111937293_StartDataBase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

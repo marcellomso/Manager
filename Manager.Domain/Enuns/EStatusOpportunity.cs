@@ -1,10 +1,10 @@
 ﻿namespace Manager.Domain.Enuns
 {
-    public enum EStatusOpportunity
+    public enum EOpportunityStatus
     {
-        Criada,
-        Expirada,
-        Aceita,
-        Cancelada
+        Created = 1,
+        Accept,
+        Canceled,
+        Expired
     }
 }
