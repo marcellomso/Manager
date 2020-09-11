@@ -1,4 +1,4 @@
-﻿using Manager.Domain.Commands.FuelCommand;
+﻿using Manager.Domain.Commands.FuelCommands;
 using Manager.Domain.Entities;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using Manager.Domain.Commands.FuelCommand;
+﻿using Manager.Domain.Commands.FuelCommands;
 using Manager.Domain.Contracts.Repositories;
 using Manager.Domain.Contracts.Services;
 using Manager.Domain.Entities;

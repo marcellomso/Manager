@@ -16,10 +16,12 @@ namespace Manager.CrossCutting
             services.AddScoped<IFuelRepository, FuelRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IVendorRepoitory, VendorRepoitory>();
 
             services.AddScoped<IFuelService, FuelService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<IVendorService, VendorService>();
         }
     }
 }

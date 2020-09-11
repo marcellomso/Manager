@@ -60,14 +60,13 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        RoleId = c.Guid(nullable: false),
+                        RoleId = c.Int(nullable: false),
                         CustomCommission = c.Double(nullable: false),
                         Deleted = c.Boolean(nullable: false),
-                        Role_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Roles", t => t.Role_Id)
-                .Index(t => t.Role_Id);
+                .ForeignKey("dbo.Roles", t => t.RoleId)
+                .Index(t => t.RoleId);
             
             CreateTable(
                 "dbo.Roles",
@@ -85,10 +84,10 @@
         public override void Down()
         {
             DropForeignKey("dbo.Opportunities", "Vendor_Id", "dbo.Vendors");
-            DropForeignKey("dbo.Vendors", "Role_Id", "dbo.Roles");
+            DropForeignKey("dbo.Vendors", "RoleId", "dbo.Roles");
             DropForeignKey("dbo.Opportunities", "Vehicle_Id", "dbo.Vehicles");
             DropForeignKey("dbo.Vehicles", "FuelId", "dbo.Fuels");
-            DropIndex("dbo.Vendors", new[] { "Role_Id" });
+            DropIndex("dbo.Vendors", new[] { "RoleId" });
             DropIndex("dbo.Vehicles", new[] { "FuelId" });
             DropIndex("dbo.Opportunities", new[] { "Vendor_Id" });
             DropIndex("dbo.Opportunities", new[] { "Vehicle_Id" });

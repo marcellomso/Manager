@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
 {
-    [Route("api/v1/fuels/")]
+    [Route("api/v1/fuels")]
     public class FuelController: BaseController
     {
         private readonly IFuelService _service;

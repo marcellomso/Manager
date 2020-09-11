@@ -17,5 +17,8 @@ namespace Manager.Infra.Repositories
 
         public IQueryable<Role> Get()
             => _context.Set<Role>().Where(x=> !x.Deleted).AsNoTracking();
+
+        public Role Get(int id)
+            => _context.Roles.FirstOrDefault(x => x.Id == id);
     }
 }

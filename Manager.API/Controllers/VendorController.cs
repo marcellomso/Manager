@@ -1,16 +1,16 @@
-﻿using Manager.Domain.Commands.VehicleCommands;
+﻿using Manager.Domain.Commands.VendoresCommands;
 using Manager.Domain.Contracts.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace Manager.API.Controllers
 {
-    [Route("api/v1/vehicles")]
-    public class VehicleController: BaseController
+    [Route("api/v1/vendores")]
+    public class VendorController : BaseController
     {
-        private readonly IVehicleService _service;
+        private readonly IVendorService _service;
 
-        public VehicleController(IVehicleService service)
+        public VendorController(IVendorService service)
         {
             _service = service;
         }
@@ -29,12 +29,12 @@ namespace Manager.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Save(VehicleCommand command)
+        public IActionResult Save(VendorCommand command)
         {
             try
             {
-                var vehicle = _service.New(command);
-                return WriteResponse(vehicle);
+                var vendor = _service.New(command);
+                return WriteResponse(vendor);
             }
             catch (Exception ex)
             {
@@ -43,12 +43,12 @@ namespace Manager.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult Save(VehicleUpdateCommand command)
+        public IActionResult Save(VendorUpdateCommand command)
         {
             try
             {
-                var vehicle = _service.Update(command);
-                return WriteResponse(vehicle);
+                var vendor = _service.Update(command);
+                return WriteResponse(vendor);
             }
             catch (Exception ex)
             {

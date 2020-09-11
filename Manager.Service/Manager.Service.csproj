@@ -46,6 +46,7 @@
     <Compile Include="RoleService.cs" />
     <Compile Include="ServiceBase.cs" />
     <Compile Include="VehicleService.cs" />
+    <Compile Include="VendorService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Manager.Domain\Manager.Domain.csproj">

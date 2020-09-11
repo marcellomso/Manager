@@ -77,7 +77,7 @@ namespace Manager.Service
             return null;
         }
 
-        public Vehicle Update(UpdateVehicleCommand command)
+        public Vehicle Update(VehicleUpdateCommand command)
         {
             ValidateObject(command, "Objeto veículo desconhecido.");
             var vehicle = Get(command.Id);

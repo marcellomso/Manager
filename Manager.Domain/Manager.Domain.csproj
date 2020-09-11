@@ -41,10 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\FuelCommand\FuelListCommand.cs" />
-    <Compile Include="Commands\VehicleCommands\UpdateVehicleCommand.cs" />
+    <Compile Include="Commands\FuelCommands\FuelListCommand.cs" />
+    <Compile Include="Commands\VehicleCommands\VehicleUpdateCommand.cs" />
     <Compile Include="Commands\VehicleCommands\VehicleCommand.cs" />
     <Compile Include="Commands\VehicleCommands\VehicleListCommand.cs" />
+    <Compile Include="Commands\VendoresCommands\VendorUpdateCommand.cs" />
+    <Compile Include="Commands\VendoresCommands\VendorCommand.cs" />
+    <Compile Include="Commands\VendoresCommands\VendorListCommand.cs" />
     <Compile Include="Contracts\Repositories\IFuelRepository.cs" />
     <Compile Include="Contracts\Repositories\IOpportunityRepository.cs" />
     <Compile Include="Contracts\Repositories\IRoleRepository.cs" />

@@ -9,7 +9,7 @@ namespace Manager.Domain.Contracts.Services
         List<VehicleListCommand> Get();
         Vehicle Get(int id);
         Vehicle New(VehicleCommand command);
-        Vehicle Update(UpdateVehicleCommand command);
+        Vehicle Update(VehicleUpdateCommand command);
         bool Delete(int id);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Manager.Domain.Commands.FuelCommand
+﻿namespace Manager.Domain.Commands.FuelCommands
 {
     public class FuelListCommand
     {

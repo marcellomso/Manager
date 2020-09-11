@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
 {
-    [Route("api/v1/roles/")]
+    [Route("api/v1/roles")]
     public class RoleController: BaseController
     {
         private readonly IRoleService _service;
