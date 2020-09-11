@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Manager.Domain.Contracts.Service
+namespace Manager.Domain.Contracts.Services
 {
     public interface IOpportunityService
     {

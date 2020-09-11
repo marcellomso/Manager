@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Manager.Infra.Persistence
+namespace Manager.Domain.Contracts.Repositories
 {
     public interface IUnitOfWork: IDisposable
     {

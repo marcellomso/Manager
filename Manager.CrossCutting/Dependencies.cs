@@ -1,5 +1,5 @@
 ﻿using Manager.Domain.Contracts.Repositories;
-using Manager.Domain.Contracts.Service;
+using Manager.Domain.Contracts.Services;
 using Manager.Infra.Persistence;
 using Manager.Infra.Repositories;
 using Manager.Service;
@@ -13,9 +13,13 @@ namespace Manager.CrossCutting
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddScoped<IFuelRepository, FuelRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
 
+            services.AddScoped<IFuelService, FuelService>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IVehicleService, VehicleService>();
         }
     }
 }

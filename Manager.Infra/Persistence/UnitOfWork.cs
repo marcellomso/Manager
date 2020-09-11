@@ -1,4 +1,5 @@
-﻿using Manager.Infra.Persistence.DataContext;
+﻿using Manager.Domain.Contracts.Repositories;
+using Manager.Infra.Persistence.DataContext;
 
 namespace Manager.Infra.Persistence
 {

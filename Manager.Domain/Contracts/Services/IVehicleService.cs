@@ -1,14 +1,15 @@
-﻿using Manager.Domain.Entities;
-using System.Linq;
+﻿using Manager.Domain.Commands.VehicleCommands;
+using Manager.Domain.Entities;
+using System.Collections.Generic;
 
-namespace Manager.Domain.Contracts.Service
+namespace Manager.Domain.Contracts.Services
 {
     public interface IVehicleService
     {
-        IQueryable<Vehicle> Get();
+        List<VehicleListCommand> Get();
         Vehicle Get(int id);
-        void New(Vehicle vehicle);
-        void Update(Vehicle vehicle);
-        void Delete(Vehicle vehicle);
+        Vehicle New(VehicleCommand command);
+        Vehicle Update(UpdateVehicleCommand command);
+        bool Delete(int id);
     }
 }

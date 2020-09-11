@@ -6,16 +6,18 @@ using System.Linq;
 
 namespace Manager.Infra.Repositories
 {
-    public class RoleRepository : IRoleRepository
+    public class FuelRepository : IFuelRepository
     {
         private readonly ManagerDataContext _context;
 
-        public RoleRepository(ManagerDataContext context)
+        public FuelRepository(ManagerDataContext context)
         {
             _context = context;
         }
+        public IQueryable<Fuel> Get()
+            => _context.Set<Fuel>().Where(x => !x.Deleted).AsNoTracking();
 
-        public IQueryable<Role> Get()
-            => _context.Set<Role>().Where(x=> !x.Deleted).AsNoTracking();
+        public Fuel Get(int id)
+            => _context.Fuels.Where(x => x.Id == id).FirstOrDefault();
     }
 }

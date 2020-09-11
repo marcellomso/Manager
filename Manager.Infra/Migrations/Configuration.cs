@@ -15,6 +15,7 @@
         protected override void Seed(ManagerDataContext context)
         {
             RoleSeed.Seed(context);
+            FuelSeed.Seed(context);
         }
     }
 }

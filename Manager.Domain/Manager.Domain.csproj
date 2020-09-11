@@ -41,20 +41,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\FuelCommand\FuelListCommand.cs" />
+    <Compile Include="Commands\VehicleCommands\UpdateVehicleCommand.cs" />
+    <Compile Include="Commands\VehicleCommands\VehicleCommand.cs" />
+    <Compile Include="Commands\VehicleCommands\VehicleListCommand.cs" />
+    <Compile Include="Contracts\Repositories\IFuelRepository.cs" />
     <Compile Include="Contracts\Repositories\IOpportunityRepository.cs" />
     <Compile Include="Contracts\Repositories\IRoleRepository.cs" />
+    <Compile Include="Contracts\Repositories\IUnitOfWork.cs" />
     <Compile Include="Contracts\Repositories\IVehicleRepository.cs" />
     <Compile Include="Contracts\Repositories\IVendorRepoitory.cs" />
+    <Compile Include="Contracts\Services\IFuelService.cs" />
     <Compile Include="Contracts\Services\IOpportunityService.cs" />
     <Compile Include="Contracts\Services\IRoleService.cs" />
     <Compile Include="Contracts\Services\IVehicleService.cs" />
     <Compile Include="Contracts\Services\IVendorService.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Fuel.cs" />
     <Compile Include="Entities\Opportunity.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Vehicle.cs" />
     <Compile Include="Entities\Vendor.cs" />
-    <Compile Include="Enuns\EFuelType.cs" />
     <Compile Include="Enuns\EStatusOpportunity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

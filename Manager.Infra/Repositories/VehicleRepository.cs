@@ -1,7 +1,7 @@
 ﻿using Manager.Domain.Contracts.Repositories;
 using Manager.Domain.Entities;
 using Manager.Infra.Persistence.DataContext;
-using System;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Manager.Infra.Repositories
@@ -15,34 +15,24 @@ namespace Manager.Infra.Repositories
             _context = context;
         }
 
-
         public void Delete(Vehicle vehicle)
         {
             vehicle.Delete();
-
-            _context
-                .Entry<Vehicle>(vehicle)
-                .State = System.Data.Entity.EntityState.Modified;
+            Update(vehicle);
         }
 
         public IQueryable<Vehicle> Get()
-        {
-            throw new NotImplementedException();
-        }
+            => _context.Set<Vehicle>().Where(x => !x.Deleted).AsNoTracking();
 
         public Vehicle Get(int id)
-        {
-            throw new NotImplementedException();
-        }
+            => _context.Vehicles.FirstOrDefault(x => x.Id == id);
 
         public void New(Vehicle vehicle)
-        {
-            throw new NotImplementedException();
-        }
+            => _context.Vehicles.Add(vehicle);
 
         public void Update(Vehicle vehicle)
-        {
-            throw new NotImplementedException();
-        }
+            => _context
+                .Entry<Vehicle>(vehicle)
+                .State = EntityState.Modified;
     }
 }

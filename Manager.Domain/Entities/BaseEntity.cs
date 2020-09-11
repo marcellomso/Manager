@@ -1,6 +1,6 @@
 ﻿namespace Manager.Domain.Entities
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         public int Id { get; private set; }
         public bool Deleted { get; private set; }

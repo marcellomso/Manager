@@ -1,4 +1,4 @@
-﻿using Manager.Domain.Contracts.Service;
+﻿using Manager.Domain.Contracts.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers

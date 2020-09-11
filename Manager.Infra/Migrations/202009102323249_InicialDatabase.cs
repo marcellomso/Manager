@@ -1,11 +1,22 @@
 ﻿namespace Manager.Infra.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
-
+    
     public partial class InicialDatabase : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Fuels",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Deleted = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.Opportunities",
                 c => new
@@ -34,12 +45,14 @@
                         Name = c.String(),
                         Year = c.String(),
                         Model = c.String(),
-                        Fuel = c.Int(nullable: false),
+                        FuelId = c.Int(nullable: false),
                         Amount = c.Double(nullable: false),
                         Status = c.String(),
                         Deleted = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Fuels", t => t.FuelId)
+                .Index(t => t.FuelId);
             
             CreateTable(
                 "dbo.Vendors",
@@ -74,13 +87,16 @@
             DropForeignKey("dbo.Opportunities", "Vendor_Id", "dbo.Vendors");
             DropForeignKey("dbo.Vendors", "Role_Id", "dbo.Roles");
             DropForeignKey("dbo.Opportunities", "Vehicle_Id", "dbo.Vehicles");
+            DropForeignKey("dbo.Vehicles", "FuelId", "dbo.Fuels");
             DropIndex("dbo.Vendors", new[] { "Role_Id" });
+            DropIndex("dbo.Vehicles", new[] { "FuelId" });
             DropIndex("dbo.Opportunities", new[] { "Vendor_Id" });
             DropIndex("dbo.Opportunities", new[] { "Vehicle_Id" });
             DropTable("dbo.Roles");
             DropTable("dbo.Vendors");
             DropTable("dbo.Vehicles");
             DropTable("dbo.Opportunities");
+            DropTable("dbo.Fuels");
         }
     }
 }
