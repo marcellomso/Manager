@@ -45,7 +45,7 @@ namespace Manager.Service
                     Model = x.Model,
                     Year = x.Year,
                     Amount = x.Amount,
-                    Status = x.Status,
+                    Sold = x.Sold,
                     Fuel = x.Fuel.Name
                 })
                 .ToList();
@@ -66,8 +66,7 @@ namespace Manager.Service
                 command.Year,
                 command.Model,
                 GetFuel(command.Fuel),
-                command.Amount,
-                command.Status);
+                command.Amount);
 
             _repository.New(vehicle);
 
@@ -88,8 +87,7 @@ namespace Manager.Service
                     command.Year,
                     command.Model,
                     GetFuel(command.Fuel),
-                    command.Amount,
-                    command.Status);
+                    command.Amount);
 
             _repository.Update(vehicle);
 

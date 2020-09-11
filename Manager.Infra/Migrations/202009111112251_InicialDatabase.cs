@@ -46,7 +46,7 @@
                         Model = c.String(),
                         FuelId = c.Int(nullable: false),
                         Amount = c.Double(nullable: false),
-                        Status = c.String(),
+                        Sold = c.Boolean(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

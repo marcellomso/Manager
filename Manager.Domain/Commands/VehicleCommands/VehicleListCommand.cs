@@ -8,6 +8,6 @@
         public string Model { get; set; }
         public string Fuel { get; set; }
         public double Amount { get; set; }
-        public string Status { get; set; }
+        public bool Sold { get; set; }
     }
 }

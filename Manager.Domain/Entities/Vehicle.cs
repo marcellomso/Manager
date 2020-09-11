@@ -8,28 +8,32 @@
         public int FuelId { get; private set; }
         public Fuel Fuel { get; private set; }
         public double Amount { get; private set; }
-        public string Status { get; private set; }
+        public bool Sold { get; private set; }
 
         protected Vehicle() {}
 
-        public Vehicle(string name, string year, string model, Fuel fuel, double amount, string status)
+        public Vehicle(string name, string year, string model, Fuel fuel, double amount)
         {
-            SetProperties(name, year, model, fuel, amount, status);
+            SetProperties(name, year, model, fuel, amount);
         }
 
-        public void Update(string name, string year, string model, Fuel fuel, double amount, string status)
+        public void Update(string name, string year, string model, Fuel fuel, double amount)
         {
-            SetProperties(name, year, model, fuel, amount, status);
+            SetProperties(name, year, model, fuel, amount);
         }
 
-        private void SetProperties(string name, string year, string model, Fuel fuel, double amount, string status)
+        private void SetProperties(string name, string year, string model, Fuel fuel, double amount)
         {
             Name = name;
             Year = year;
             Model = model;
             Fuel = fuel;
             Amount = amount;
-            Status = status;
+        }
+
+        public void SoldVehicle()
+        {
+            Sold = true;
         }
     }
 }

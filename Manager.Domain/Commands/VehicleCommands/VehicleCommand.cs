@@ -7,6 +7,5 @@
         public string Model { get; set; }
         public int Fuel { get; set; }
         public double Amount { get; set; }
-        public string Status { get; set; }
     }
 }

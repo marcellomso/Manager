@@ -4,6 +4,7 @@ using Manager.Domain.Contracts.Services;
 using Manager.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace Manager.Service
