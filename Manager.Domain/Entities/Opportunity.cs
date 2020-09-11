@@ -17,6 +17,8 @@ namespace Manager.Domain.Entities
         public OpportunityStatus Status { get; private set; }
         public decimal Amount { get; private set; }
 
+        public decimal Comission { get; set; }
+
         [NotMapped]
         public bool IsExpired
         {
@@ -65,12 +67,13 @@ namespace Manager.Domain.Entities
             return true;
         }
 
-        public bool Accept()
+        public bool Accept(decimal percentage)
         {
             if (!this.ChangeStatusScopesValid())
             return false;
 
             StatusId = (int)EOpportunityStatus.Accept;
+            Comission = Math.Round(Amount * percentage * (decimal)0.01);
             return true;
         }
 

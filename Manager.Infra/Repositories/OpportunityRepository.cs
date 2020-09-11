@@ -33,10 +33,18 @@ namespace Manager.Infra.Repositories
 
         public List<Opportunity> GetByVehicle(int id, int vehicleId)
             => _context.Opportunities
-                    .Where(x => x.Id != id && 
+                    .Where(x => x.Id != id &&
                            x.VehicleId == vehicleId &&
-                           x.StatusId == (int)EOpportunityStatus.Created)
+                           x.StatusId == (int)EOpportunityStatus.Created &&
+                           !x.Deleted)
                     .ToList();
+
+        public Opportunity GetFull(int id)
+            => _context.Opportunities
+            .Include(x => x.Vehicle)
+            .Include(x=> x.Vendor)
+            .Include(x=> x.Vendor.Role)
+            .FirstOrDefault(x => x.Id == id);
 
         public bool IsDuplicate(int vehicleId, int vendorId)
             => _context.Opportunities

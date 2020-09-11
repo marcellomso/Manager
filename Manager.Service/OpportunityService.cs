@@ -2,6 +2,7 @@
 using Manager.Domain.Contracts.Repositories;
 using Manager.Domain.Contracts.Services;
 using Manager.Domain.Entities;
+using Manager.SharedKernel.Events;
 using Manager.SharedKernel.Validations;
 using System.Collections.Generic;
 using System.Data;
@@ -33,7 +34,7 @@ namespace Manager.Service
             if (!ValidateObject(opportunity, "Proposta não encontrada."))
                 return false;
 
-            if (!ExprationDateValid(opportunity))
+            if (!ExprationDateValidate(opportunity))
                 return false;
 
             opportunity.Delete();
@@ -57,7 +58,8 @@ namespace Manager.Service
                     Amount = x.Amount,
                     Status = x.Status.Description,
                     Creation = x.Creation,
-                    Expiration = x.Expiration
+                    Expiration = x.Expiration,
+                    Commision = x.Comission
                 })
                 .ToList();
         }
@@ -104,7 +106,7 @@ namespace Manager.Service
             if (!ValidateObject(opportunity, "Proposta não encontrado."))
                 return null;
 
-            if (!ExprationDateValid(opportunity))
+            if (!ExprationDateValidate(opportunity))
                 return null;
 
             opportunity.Update(
@@ -121,22 +123,26 @@ namespace Manager.Service
 
         public bool Accept(int id)
         {
-            var opportunity = Get(id);
+            var opportunity = _repository.GetFull(id);
 
             if (!ValidateObject(opportunity, "Proposta não encontrada."))
                 return false;
 
-            if (!ExprationDateValid(opportunity))
+            if (!ExprationDateValidate(opportunity))
                 return false;
-
-            if (opportunity.Accept())
+            
+            decimal percentege = GetPercentageCommission(opportunity);
+            
+            if (opportunity.Accept(percentege))
             {
                 opportunity.Vehicle.Sold();
 
                 var opportunities = _repository.GetByVehicle(id, opportunity.VehicleId);
                 foreach (var opp in opportunities)
                 {
-                    if (ExprationDateValid(opp))
+                    if (opp.IsExpired)
+                        opp.Expired();
+                    else
                         opp.Cancel();
 
                     _repository.Update(opp);
@@ -158,7 +164,7 @@ namespace Manager.Service
             if (!ValidateObject(opportunity, "Proposta não encontrada."))
                 return false;
 
-            if (!ExprationDateValid(opportunity))
+            if (!ExprationDateValidate(opportunity))
                 return false;
 
             opportunity.Cancel();
@@ -178,7 +184,7 @@ namespace Manager.Service
             );
         }
 
-        private bool ExprationDateValid(Opportunity opportunity)
+        private bool ExprationDateValidate(Opportunity opportunity)
         {
             if (!opportunity.IsExpired)
                 return true;
@@ -189,8 +195,16 @@ namespace Manager.Service
 
             return AssertionConcern.IsSatisfiedBy
             (
-                AssertionConcern.AssertTrue(false, "Proposta com data de validade expirada.")
+                new DomainNotification("ExprationDateValidate", "Proposta com data de validade expirada.")
             );
+        }
+
+        private decimal GetPercentageCommission(Opportunity opportunity)
+        {
+            if (opportunity.Vendor.CustomCommission > 0)
+                return opportunity.Vendor.CustomCommission;
+            else
+                return (decimal)opportunity.Vendor.Role.Commission;
         }
     }
 }

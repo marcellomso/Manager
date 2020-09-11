@@ -11,5 +11,6 @@ namespace Manager.Domain.Commands.OpportunityCommands
         public string Status { get; set; }
         public DateTime Creation { get; set; }
         public DateTime Expiration { get; set; }
+        public decimal Commision { get; set; }
     }
 }
