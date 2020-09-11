@@ -2,21 +2,18 @@
 using Manager.Domain.Contracts.Repositories;
 using Manager.Domain.Contracts.Services;
 using Manager.Domain.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Manager.Service
 {
     public class VendorService : ServiceBase, IVendorService
     {
-        private readonly IVendorRepoitory _repository;
+        private readonly IVendorRepository _repository;
         private readonly IRoleRepository _roleRepository;
 
         public VendorService(
-            IVendorRepoitory repository,
+            IVendorRepository repository,
             IRoleRepository roleRepository,
             IUnitOfWork unitOfWork) : base(unitOfWork)
         {

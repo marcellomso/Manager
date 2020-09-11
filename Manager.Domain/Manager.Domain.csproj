@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\FuelCommands\FuelListCommand.cs" />
+    <Compile Include="Commands\OpportunityCommands\OpportunityCommand.cs" />
+    <Compile Include="Commands\OpportunityCommands\OpportunityListCommand.cs" />
+    <Compile Include="Commands\OpportunityCommands\OpportunityUpdateCommand.cs" />
     <Compile Include="Commands\VehicleCommands\VehicleUpdateCommand.cs" />
     <Compile Include="Commands\VehicleCommands\VehicleCommand.cs" />
     <Compile Include="Commands\VehicleCommands\VehicleListCommand.cs" />

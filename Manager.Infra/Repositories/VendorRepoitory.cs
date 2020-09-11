@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Manager.Infra.Repositories
 {
-    public class VendorRepoitory : IVendorRepoitory
+    public class VendorRepoitory : IVendorRepository
     {
         private readonly ManagerDataContext _context;
 

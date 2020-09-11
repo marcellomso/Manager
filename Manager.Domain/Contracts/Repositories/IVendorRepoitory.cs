@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Manager.Domain.Contracts.Repositories
 {
-    public interface IVendorRepoitory
+    public interface IVendorRepository
     {
         IQueryable<Vendor> Get();
         Vendor Get(int id);

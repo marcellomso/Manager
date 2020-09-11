@@ -13,7 +13,7 @@ namespace Manager.Infra.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202009110844050_InicialDatabase"; }
+            get { return "202009110935287_InicialDatabase"; }
         }
         
         string IMigrationMetadata.Source

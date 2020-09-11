@@ -5,9 +5,9 @@ namespace Manager.Domain.Entities
 {
     public class Opportunity: BaseEntity
     {
-        public Guid VeicheId { get; private set; }
+        public int VeicheId { get; private set; }
         public Vehicle Vehicle { get; private set; }
-        public Guid VendorId { get; private set; }
+        public int VendorId { get; private set; }
         public Vendor Vendor { get; private set; }
         public DateTime Creation { get; private set; }
         public DateTime Expiration { get => Creation.AddDays(7); }
