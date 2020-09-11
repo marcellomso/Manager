@@ -18,6 +18,6 @@ namespace Manager.Infra.Repositories
             => _context.Set<Fuel>().Where(x => !x.Deleted).AsNoTracking();
 
         public Fuel Get(int id)
-            => _context.Fuels.Where(x => x.Id == id).FirstOrDefault();
+            => _context.Fuels.FirstOrDefault(x => x.Id == id);
     }
 }

@@ -55,5 +55,19 @@ namespace Manager.API.Controllers
                 return BadRequest(ex);
             }
         }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                return WriteResponse(_service.Delete(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }
