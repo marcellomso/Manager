@@ -2,9 +2,11 @@
 using Manager.Domain.Entities;
 using Manager.Domain.Enuns;
 using Manager.Infra.Persistence.DataContext;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Manager.Infra.Repositories
 {
@@ -23,8 +25,16 @@ namespace Manager.Infra.Repositories
             Update(opportunity);
         }
 
-        public IQueryable<Opportunity> Get()
-            => _context.Set<Opportunity>().Where(x => !x.Deleted).AsNoTracking();
+        private static Expression<Func<Opportunity, bool>> Predicate(bool isAdmin, int vendorId)
+        {
+            if (isAdmin)
+                return x => !x.Deleted;
+
+            return x => !x.Deleted && x.VendorId == vendorId;
+        }
+
+        public IQueryable<Opportunity> Get(bool isAdmin, int vendorId)
+            => _context.Set<Opportunity>().Where(Predicate(isAdmin, vendorId)).AsNoTracking();
 
         public Opportunity Get(int id, int vendorId)
             => _context.Opportunities

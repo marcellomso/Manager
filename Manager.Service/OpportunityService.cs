@@ -51,40 +51,21 @@ namespace Manager.Service
 
         public List<OpportunityListCommand> Get(int vendorId)
         {
-            if (_userRepository.IsAdmin(vendorId))
-            {
-                return _repository.Get()
-                    .Where(x => !x.Deleted)
-                    .Select(x => new OpportunityListCommand
-                    {
-                        Id = x.Id,
-                        Vendor = x.Vendor.Name,
-                        Veiche = x.Vehicle.Name,
-                        Amount = x.Amount,
-                        Status = x.Status.Description,
-                        Creation = x.Creation,
-                        Expiration = x.Expiration,
-                        Commision = x.Comission
-                    })
-                    .ToList();
-            }
-            else
-            {
-                return _repository.Get()
-                    .Where(x => !x.Deleted && x.VendorId == vendorId)
-                    .Select(x => new OpportunityListCommand
-                    {
-                        Id = x.Id,
-                        Vendor = x.Vendor.Name,
-                        Veiche = x.Vehicle.Name,
-                        Amount = x.Amount,
-                        Status = x.Status.Description,
-                        Creation = x.Creation,
-                        Expiration = x.Expiration,
-                        Commision = x.Comission
-                    })
-                    .ToList();
-            }
+            bool admin = _userRepository.IsAdmin(vendorId);
+
+            return _repository.Get(admin, vendorId)
+                .Select(x => new OpportunityListCommand
+                {
+                    Id = x.Id,
+                    Vendor = x.Vendor.Name,
+                    Veiche = x.Vehicle.Name,
+                    Amount = x.Amount,
+                    Status = x.Status.Description,
+                    Creation = x.Creation,
+                    Expiration = x.Expiration,
+                    Commision = x.Comission
+                })
+                .ToList();
         }
 
         private Opportunity GetId(int id, int vendorId)
@@ -153,9 +134,9 @@ namespace Manager.Service
 
             if (!ExprationDateValidate(opportunity))
                 return false;
-            
+
             decimal percentege = GetPercentageCommission(opportunity);
-            
+
             if (opportunity.Accept(percentege))
             {
                 opportunity.Vehicle.Sold();
