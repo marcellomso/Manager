@@ -54,6 +54,7 @@
     <Compile Include="Commands\VendoresCommands\VendorCommand.cs" />
     <Compile Include="Commands\VendoresCommands\VendorListCommand.cs" />
     <Compile Include="Contracts\Repositories\IFuelRepository.cs" />
+    <Compile Include="Contracts\Repositories\IOpportunitesLogRepository.cs" />
     <Compile Include="Contracts\Repositories\IOpportunityRepository.cs" />
     <Compile Include="Contracts\Repositories\IRoleRepository.cs" />
     <Compile Include="Contracts\Repositories\IUnitOfWork.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Contracts\Services\IVendorService.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Fuel.cs" />
+    <Compile Include="Entities\OpportunitesLog.cs" />
     <Compile Include="Entities\Opportunity.cs" />
     <Compile Include="Entities\OpportunityStatus.cs" />
     <Compile Include="Entities\Role.cs" />

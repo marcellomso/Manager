@@ -14,6 +14,7 @@ namespace Manager.Infra.Persistence.DataContext
         public DbSet<Fuel> Fuels { get; set; }
         public DbSet<OpportunityStatus> OpportunitiesStatus { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<OpportunitesLog> Logs { get; set; }
 
         public ManagerDataContext(string stringConexao) : base(stringConexao)
         {

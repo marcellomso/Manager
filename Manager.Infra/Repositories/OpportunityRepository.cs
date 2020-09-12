@@ -61,11 +61,20 @@ namespace Manager.Infra.Repositories
                 .Any(x => x.VehicleId == vehicleId && x.VendorId == vendorId);
 
         public void New(Opportunity opportunity)
-            => _context.Opportunities.Add(opportunity);
+        {
+            _context.Logs.Add(RegisterLog(opportunity));
+            _context.Opportunities.Add(opportunity);
+        }
 
         public void Update(Opportunity opportunity)
-            => _context
+        {
+            _context.Logs.Add(RegisterLog(opportunity));
+            _context
                 .Entry<Opportunity>(opportunity)
                 .State = EntityState.Modified;
+        }
+
+        private OpportunitesLog RegisterLog(Opportunity opportunity)
+            => new OpportunitesLog(opportunity.Vendor, opportunity.StatusId);
     }
 }
