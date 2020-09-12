@@ -32,6 +32,8 @@ namespace Manager.API
             services.AddScoped<IHandler<DomainNotification>, DomainNotificationHandler>();
             services.AddServices();
 
+            services.AddSwaggerGen();
+
             services.AddCors();
             services.AddAuth(Configuration);
             services.AddMvc(config =>
@@ -58,6 +60,12 @@ namespace Manager.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BizenManager API V1");
+            });
 
             app.UseCors(x =>
             {
