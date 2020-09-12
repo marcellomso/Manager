@@ -1,5 +1,6 @@
 ﻿using Manager.Domain.Commands.VehicleCommands;
 using Manager.Domain.Contracts.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -54,6 +55,7 @@ namespace Manager.API.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
             try

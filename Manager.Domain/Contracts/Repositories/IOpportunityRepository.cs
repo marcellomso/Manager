@@ -7,8 +7,8 @@ namespace Manager.Domain.Contracts.Repositories
     public interface IOpportunityRepository
     {
         IQueryable<Opportunity> Get();
-        Opportunity Get(int id);
-        Opportunity GetFull(int id);
+        Opportunity Get(int id, int vendorId);
+        Opportunity GetFull(int id, int vendorId);
         List<Opportunity> GetByVehicle(int id, int vehicleId);
         void New(Opportunity opportunity);
         void Update(Opportunity opportunity);

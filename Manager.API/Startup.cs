@@ -1,10 +1,14 @@
-﻿using Manager.CrossCutting;
+﻿using Manager.API.Auth;
+using Manager.CrossCutting;
 using Manager.Infra.Persistence.DataContext;
 using Manager.SharedKernel;
 using Manager.SharedKernel.Events;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,19 +28,26 @@ namespace Manager.API
             ManagerDataContext.Update(Configuration.GetConnectionString("BitzenConnectionString"));
 
             services.AddScoped(_ => new ManagerDataContext(Configuration.GetConnectionString("BitzenConnectionString")));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IHandler<DomainNotification>, DomainNotificationHandler>();
             services.AddServices();
 
             services.AddCors();
-
-            services.AddMvc()
-                .AddJsonOptions(o =>
-                {
-                    o.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
-                    ((Newtonsoft.Json.Serialization.DefaultContractResolver)o.SerializerSettings.ContractResolver).NamingStrategy.ProcessDictionaryKeys = true;
-                    o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                })
-               .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddAuth(Configuration);
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            })
+          .AddJsonOptions(o =>
+          {
+              o.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
+              ((Newtonsoft.Json.Serialization.DefaultContractResolver)o.SerializerSettings.ContractResolver).NamingStrategy.ProcessDictionaryKeys = true;
+              o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+          })
+          .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             DomainEvent.Container = services.BuildServiceProvider();
         }
@@ -55,7 +66,8 @@ namespace Manager.API
                 x.AllowAnyOrigin();
             });
 
-            //app.UseAuthentication();
+            app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

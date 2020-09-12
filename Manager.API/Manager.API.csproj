@@ -5,12 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Auth\51uqnsv2.3pt~" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.HttpsPolicy" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -20,6 +26,10 @@
     <ProjectReference Include="..\Manager.CrossCutting\Manager.CrossCutting.csproj" />
     <ProjectReference Include="..\Manager.Domain\Manager.Domain.csproj" />
     <ProjectReference Include="..\Manager.SharedKernel\Manager.SharedKernel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.IdentityModel" />
   </ItemGroup>
 
 </Project>

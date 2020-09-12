@@ -55,6 +55,10 @@
     <Compile Include="Migrations\202009111937293_StartDataBase.designer.cs">
       <DependentUpon>202009111937293_StartDataBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009112302285_AddUser.cs" />
+    <Compile Include="Migrations\202009112302285_AddUser.designer.cs">
+      <DependentUpon>202009112302285_AddUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Seed\FuelSeed.cs" />
     <Compile Include="Migrations\Seed\OpportunityStatusSeed.cs" />
@@ -65,6 +69,7 @@
     <Compile Include="Repositories\FuelRepository.cs" />
     <Compile Include="Repositories\OpportunityRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="Repositories\VendorRepoitory.cs" />
   </ItemGroup>
@@ -77,11 +82,18 @@
       <Project>{58ffca4b-8b83-4f3c-a63b-c22707b5a3db}</Project>
       <Name>Manager.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Manager.SharedKernel\Manager.SharedKernel.csproj">
+      <Project>{675B8673-9384-4FBF-9A9B-092D6D89E865}</Project>
+      <Name>Manager.SharedKernel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202009111937293_StartDataBase.resx">
       <DependentUpon>202009111937293_StartDataBase.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009112302285_AddUser.resx">
+      <DependentUpon>202009112302285_AddUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

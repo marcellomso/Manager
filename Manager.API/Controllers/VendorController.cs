@@ -1,5 +1,6 @@
 ﻿using Manager.Domain.Commands.VendoresCommands;
 using Manager.Domain.Contracts.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -21,10 +22,12 @@ namespace Manager.API.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Get(int id)
             => ReturnResponse(_service.Get(id), null);
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public IActionResult Save(VendorCommand command)
         {
             try
@@ -39,6 +42,7 @@ namespace Manager.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "admin")]
         public IActionResult Save(VendorUpdateCommand command)
         {
             try
@@ -54,6 +58,7 @@ namespace Manager.API.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
             try

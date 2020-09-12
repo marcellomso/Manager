@@ -18,6 +18,7 @@ namespace Manager.CrossCutting
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IVendorRepository, VendorRepoitory>();
             services.AddScoped<IOpportunityRepository, OpportunityRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<IFuelService, FuelService>();
             services.AddScoped<IRoleService, RoleService>();

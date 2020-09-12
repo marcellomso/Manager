@@ -3,6 +3,7 @@ using Manager.SharedKernel.Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Security.Claims;
 
 namespace Manager.API.Controllers
 {
@@ -31,12 +32,19 @@ namespace Manager.API.Controllers
 
         protected IActionResult ReturnResponse(Exception ex)
         {
-                return BadRequest(new
-                {
-                    success = false,
-                    data = ex,
-                    errors = ex.Message
-                });
+            return BadRequest(new
+            {
+                success = false,
+                data = ex,
+                errors = ex.Message
+            });
+        }
+
+        protected int VendorId
+        {
+            get {
+                return Int32.Parse((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Sid).Value);
+            }
         }
 
         public void Dispose()

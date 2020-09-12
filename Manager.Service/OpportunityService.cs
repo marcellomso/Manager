@@ -15,21 +15,24 @@ namespace Manager.Service
         private readonly IOpportunityRepository _repository;
         private readonly IVendorRepository _vendorRepository;
         private readonly IVehicleRepository _vehicleRepository;
+        private readonly IUserRepository _userRepository;
 
         public OpportunityService(
             IOpportunityRepository repository,
             IVendorRepository vendorRepository,
             IVehicleRepository vehicleRepository,
+            IUserRepository userRepository,
             IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             _repository = repository;
             _vendorRepository = vendorRepository;
             _vehicleRepository = vehicleRepository;
+            _userRepository = userRepository;
         }
 
-        public bool Delete(int id)
+        public bool Delete(int id, int vendorId)
         {
-            var opportunity = Get(id);
+            var opportunity = GetId(id, vendorId);
 
             if (!ValidateObject(opportunity, "Proposta não encontrada."))
                 return false;
@@ -46,26 +49,46 @@ namespace Manager.Service
             return false;
         }
 
-        public List<OpportunityListCommand> Get()
+        public List<OpportunityListCommand> Get(int vendorId)
         {
-            return _repository.Get()
-                .Where(x => !x.Deleted)
-                .Select(x => new OpportunityListCommand
-                {
-                    Id = x.Id,
-                    Vendor = x.Vendor.Name,
-                    Veiche = x.Vehicle.Name,
-                    Amount = x.Amount,
-                    Status = x.Status.Description,
-                    Creation = x.Creation,
-                    Expiration = x.Expiration,
-                    Commision = x.Comission
-                })
-                .ToList();
+            if (_userRepository.IsAdmin(vendorId))
+            {
+                return _repository.Get()
+                    .Where(x => !x.Deleted)
+                    .Select(x => new OpportunityListCommand
+                    {
+                        Id = x.Id,
+                        Vendor = x.Vendor.Name,
+                        Veiche = x.Vehicle.Name,
+                        Amount = x.Amount,
+                        Status = x.Status.Description,
+                        Creation = x.Creation,
+                        Expiration = x.Expiration,
+                        Commision = x.Comission
+                    })
+                    .ToList();
+            }
+            else
+            {
+                return _repository.Get()
+                    .Where(x => !x.Deleted && x.VendorId == vendorId)
+                    .Select(x => new OpportunityListCommand
+                    {
+                        Id = x.Id,
+                        Vendor = x.Vendor.Name,
+                        Veiche = x.Vehicle.Name,
+                        Amount = x.Amount,
+                        Status = x.Status.Description,
+                        Creation = x.Creation,
+                        Expiration = x.Expiration,
+                        Commision = x.Comission
+                    })
+                    .ToList();
+            }
         }
 
-        public Opportunity Get(int id)
-            => _repository.Get(id);
+        private Opportunity GetId(int id, int vendorId)
+            => _repository.Get(id, vendorId);
 
         private Vehicle GetVehicle(int vehicleId)
             => _vehicleRepository.Get(vehicleId);
@@ -73,14 +96,14 @@ namespace Manager.Service
         private Vendor GetVendor(int vendorId)
             => _vendorRepository.Get(vendorId);
 
-        public Opportunity New(OpportunityCommand command)
+        public Opportunity New(OpportunityCommand command, int vendorId)
         {
             if (!ValidateObject(command, "Objeto proposta desconhecido."))
                 return null;
 
             var opportunity = new Opportunity(
                 GetVehicle(command.Vehicle),
-                GetVendor(command.Vendor),
+                GetVendor(vendorId),
                 command.Amount);
 
             if (opportunity.Vehicle != null &&
@@ -96,12 +119,12 @@ namespace Manager.Service
             return null;
         }
 
-        public Opportunity Update(OpportunityUpdateCommand command)
+        public Opportunity Update(OpportunityUpdateCommand command, int vendorId)
         {
             if (!ValidateObject(command, "Objeto proposta desconhecido."))
                 return null;
 
-            var opportunity = Get(command.Id);
+            var opportunity = GetId(command.Id, vendorId);
 
             if (!ValidateObject(opportunity, "Proposta não encontrado."))
                 return null;
@@ -121,9 +144,9 @@ namespace Manager.Service
             return null;
         }
 
-        public bool Accept(int id)
+        public bool Accept(int id, int vendorId)
         {
-            var opportunity = _repository.GetFull(id);
+            var opportunity = _repository.GetFull(id, vendorId);
 
             if (!ValidateObject(opportunity, "Proposta não encontrada."))
                 return false;
@@ -157,9 +180,9 @@ namespace Manager.Service
             return false;
         }
 
-        public bool Cancel(int id)
+        public bool Cancel(int id, int vendorId)
         {
-            var opportunity = Get(id);
+            var opportunity = GetId(id, vendorId);
 
             if (!ValidateObject(opportunity, "Proposta não encontrada."))
                 return false;

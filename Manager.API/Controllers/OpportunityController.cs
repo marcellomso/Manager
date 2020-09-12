@@ -14,21 +14,17 @@ namespace Manager.API.Controllers
         {
             _service = service;
         }
+        
         [HttpGet]
         public IActionResult Get()
-            => ReturnResponse(_service.Get(), null);
-
-        [HttpGet]
-        [Route("{id:int}")]
-        public IActionResult Get(int id)
-            => ReturnResponse(_service.Get(id), null);
+            => ReturnResponse(_service.Get(VendorId), null);
 
         [HttpPost]
         public IActionResult Save(OpportunityCommand command)
         {
             try
             {
-                var opportunity = _service.New(command);
+                var opportunity = _service.New(command, VendorId);
                 return ReturnResponse(opportunity, null);
             }
             catch (Exception ex)
@@ -42,7 +38,7 @@ namespace Manager.API.Controllers
         {
             try
             {
-                var opportunity = _service.Update(command);
+                var opportunity = _service.Update(command, VendorId);
                 return ReturnResponse(opportunity, null);
             }
             catch (Exception ex)
@@ -57,7 +53,7 @@ namespace Manager.API.Controllers
         {
             try
             {
-                return ReturnResponse(_service.Delete(id), null);
+                return ReturnResponse(_service.Delete(id, VendorId), null);
             }
             catch (Exception ex)
             {
@@ -71,7 +67,7 @@ namespace Manager.API.Controllers
         {
             try
             {
-                bool opportunity = _service.Cancel(id);
+                bool opportunity = _service.Cancel(id, VendorId);
                 return ReturnResponse(opportunity, null);
             }
             catch (Exception ex)
@@ -86,7 +82,7 @@ namespace Manager.API.Controllers
         {
             try
             {
-                bool opportunity = _service.Accept(id);
+                bool opportunity = _service.Accept(id, VendorId);
                 return ReturnResponse(opportunity, null);
             }
             catch (Exception ex)

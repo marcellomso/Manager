@@ -26,10 +26,10 @@ namespace Manager.Infra.Repositories
         public IQueryable<Opportunity> Get()
             => _context.Set<Opportunity>().Where(x => !x.Deleted).AsNoTracking();
 
-        public Opportunity Get(int id)
+        public Opportunity Get(int id, int vendorId)
             => _context.Opportunities
             .Include(x => x.Vehicle)
-            .FirstOrDefault(x => x.Id == id);
+            .FirstOrDefault(x => x.Id == id && x.VendorId == vendorId);
 
         public List<Opportunity> GetByVehicle(int id, int vehicleId)
             => _context.Opportunities
@@ -39,12 +39,12 @@ namespace Manager.Infra.Repositories
                            !x.Deleted)
                     .ToList();
 
-        public Opportunity GetFull(int id)
+        public Opportunity GetFull(int id, int vendorId)
             => _context.Opportunities
             .Include(x => x.Vehicle)
             .Include(x=> x.Vendor)
             .Include(x=> x.Vendor.Role)
-            .FirstOrDefault(x => x.Id == id);
+            .FirstOrDefault(x => x.Id == id && x.VendorId == vendorId);
 
         public bool IsDuplicate(int vehicleId, int vendorId)
             => _context.Opportunities

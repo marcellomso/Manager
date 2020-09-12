@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AuthCommands\AuthCommand.cs" />
     <Compile Include="Commands\FuelCommands\FuelListCommand.cs" />
     <Compile Include="Commands\OpportunityCommands\OpportunityCommand.cs" />
     <Compile Include="Commands\OpportunityCommands\OpportunityListCommand.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Contracts\Repositories\IOpportunityRepository.cs" />
     <Compile Include="Contracts\Repositories\IRoleRepository.cs" />
     <Compile Include="Contracts\Repositories\IUnitOfWork.cs" />
+    <Compile Include="Contracts\Repositories\IUserRepository.cs" />
     <Compile Include="Contracts\Repositories\IVehicleRepository.cs" />
     <Compile Include="Contracts\Repositories\IVendorRepoitory.cs" />
     <Compile Include="Contracts\Services\IFuelService.cs" />
@@ -68,11 +70,13 @@
     <Compile Include="Entities\Opportunity.cs" />
     <Compile Include="Entities\OpportunityStatus.cs" />
     <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Vehicle.cs" />
     <Compile Include="Entities\Vendor.cs" />
     <Compile Include="Enuns\EStatusOpportunity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scopes\OpportunityScopes.cs" />
+    <Compile Include="Scopes\UserScopes.cs" />
     <Compile Include="Scopes\VehicleScopes.cs" />
     <Compile Include="Scopes\VendorScopes.cs" />
   </ItemGroup>
@@ -82,5 +86,6 @@
       <Name>Manager.SharedKernel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

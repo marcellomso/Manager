@@ -11,16 +11,18 @@ namespace Manager.Service
     {
         private readonly IVendorRepository _repository;
         private readonly IRoleRepository _roleRepository;
+        private readonly IUserRepository _userRepository;
 
         public VendorService(
             IVendorRepository repository,
             IRoleRepository roleRepository,
+            IUserRepository userRepository,
             IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             _repository = repository;
             _roleRepository = roleRepository;
+            _userRepository = userRepository;
         }
-
 
         public bool Delete(int id)
         {
@@ -67,7 +69,11 @@ namespace Manager.Service
                 GetRole(command.Role),
                 command.CustomCommission);
 
+            var user = new User(vendor, command.Username);
+            user.ConfigurePassord(command.Password, command.PasswordConfirmation);
+
             _repository.New(vendor);
+            _userRepository.New(user);
 
             if (Commit())
                 return vendor;

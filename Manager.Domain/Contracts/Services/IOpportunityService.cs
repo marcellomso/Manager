@@ -6,12 +6,11 @@ namespace Manager.Domain.Contracts.Services
 {
     public interface IOpportunityService
     {
-        List<OpportunityListCommand> Get();
-        Opportunity Get(int id);
-        Opportunity New(OpportunityCommand command);
-        Opportunity Update(OpportunityUpdateCommand command);
-        bool Delete(int id);
-        bool Accept(int id);
-        bool Cancel(int id);
+        List<OpportunityListCommand> Get(int vendorId);
+        Opportunity New(OpportunityCommand command, int vendorId);
+        Opportunity Update(OpportunityUpdateCommand command, int vendorId);
+        bool Delete(int id, int vendorId);
+        bool Accept(int id, int vendorId);
+        bool Cancel(int id, int vendorId);
     }
 }
